@@ -1,25 +1,19 @@
 import { PrismaClient } from "@prisma/client";
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method === "GET") {
-    const colors = await prisma.favoriteColor.findMany();
-    res.status(200).json(colors);
-  } else if (req.method === "POST") {
-    const { color } = req.body;
-    const newColor = await prisma.favoriteColor.create({
-      data: {
-        color,
-      },
-    });
-    res.status(201).json(newColor);
-  } else {
-    res.setHeader("Allow", ["GET", "POST"]);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
-  }
+export async function GET() {
+  const colors = await prisma.favoriteColor.findMany();
+  return NextResponse.json(colors, { status: 200 });
+}
+
+export async function POST(req: NextRequest) {
+  const { color } = await req.json();
+  const newColor = await prisma.favoriteColor.create({
+    data: {
+      color,
+    },
+  });
+  return NextResponse.json(newColor, { status: 201 });
 }

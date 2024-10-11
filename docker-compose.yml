@@ -3,11 +3,12 @@ services:
     build: .
     ports:
       - '3000:3000'
+    volumes:
+      - .:/wikiforge
     depends_on:
       - db
     environment:
       DATABASE_URL: postgres://postgres:password@db:5432/mydatabase
-
   db:
     image: postgres:14
     environment:
@@ -16,6 +17,5 @@ services:
       POSTGRES_DB: mydatabase
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
 volumes:
   postgres_data:
