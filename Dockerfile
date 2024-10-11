@@ -17,5 +17,5 @@ COPY . .
 # Expose the port the app runs on
 EXPOSE 3000
 
-# Run Prisma migrate and start the Next.js application
-CMD ["sh", "-c", "npx prisma migrate deploy && npm run dev"]
+# Run Prisma generate, migrate and start the Next.js application
+CMD ["sh", "-c", "npx prisma generate && npx prisma migrate deploy && npm run dev"]
