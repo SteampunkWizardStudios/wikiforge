@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
-
-const prisma = new PrismaClient();
 
 export async function GET() {
   const colors = await prisma.favoriteColor.findMany();
@@ -16,4 +14,14 @@ export async function POST(req: NextRequest) {
     },
   });
   return NextResponse.json(newColor, { status: 201 });
+}
+
+export async function DELETE(req: NextRequest) {
+  const { id } = await req.json();
+  await prisma.favoriteColor.delete({
+	where: {
+	  id,
+	},
+  });
+  return NextResponse.json({ message: "Color deleted" }, { status: 200 });
 }

@@ -5,15 +5,21 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 model FavoriteColor {
-  id    Int    @id @default(autoincrement())
-  color String
+    id    Int    @id @default(autoincrement())
+    color String
+}
+
+model Page {
+    id      Int    @id @default(autoincrement())
+    title   String @unique
+    content String
 }
