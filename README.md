@@ -1,7 +1,8 @@
 ## Tech stack
 - Docker
+- Node.js
 - Next.js
 - Typescript
-- Tailwind
+- Tailwind CSS
 - PostgreSQL
 - Prisma
