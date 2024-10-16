@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "Prisma.prisma",
+        "bradlc.vscode-tailwindcss",
+        "rvest.vs-code-prettier-eslint",
+        "ms-azuretools.vscode-docker",
+    ]
+}
