@@ -21,7 +21,6 @@ model FavoriteColor {
 model Page {
     id        Int        @id @default(autoincrement())
     title     String     @unique
-    content   String
     createdAt DateTime   @default(now())
     updatedAt DateTime   @updatedAt
     revisions Revision[]
@@ -32,6 +31,6 @@ model Revision {
     Page        Page     @relation(fields: [pageId], references: [id])
     pageId      Int
     rawContent  String // forgeText, used for editors
-    htmlContent String // prerendered, used for viewers
+    htmlContent String? // prerendered, used for viewers (may be cached elsewhere in the future)
     timestamp   DateTime @default(now())
 }
