@@ -1,3 +1,14 @@
+# WikiForge
+WikiForge is wiki-software intended to be a MediaWiki alternative. WikiForge aims to provide tools to enforce data models across your wiki to keep your pages consistent and predictable while keeping the flexibility of encyclopedia-style wikis.
+
+## Features
+- Data source (to be added)
+  - Data tables organize wiki data and allow you to reference data in your articles dynamically.
+- Page classes (to be added)
+  - Enforce consistent page layout and content.
+- Components (to be added)
+  - Powerful templates that render as HTML, allowing granular control over the style and layout of your pages.
+
 ## Tech stack
 - Docker
 - Node.js
