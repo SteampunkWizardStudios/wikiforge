@@ -8,6 +8,7 @@ export async function GET(req: NextRequest) {
 
   if (!slug) {
     const pages: Page[] = await prisma.page.findMany();
+    console.log(pages);
     return NextResponse.json(pages, { status: 200 });
   }
 
@@ -19,6 +20,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ message: "Page not found" }, { status: 404 });
   }
 
+  console.log(page);
   return NextResponse.json(page, { status: 200 });
 }
 
