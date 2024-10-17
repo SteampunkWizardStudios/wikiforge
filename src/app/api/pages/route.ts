@@ -7,11 +7,14 @@ export async function GET(req: NextRequest) {
   const slug = searchParams.get("slug");
 
   if (!slug) {
-    const pages = await prisma.page.findMany();
+    const pages: Page[] = await prisma.page.findMany();
     return NextResponse.json(pages, { status: 200 });
   }
 
-  const page = await prisma.page.findUnique({ where: { title: slug } });
+  const page: Page | null = await prisma.page.findUnique({
+    where: { title: slug }
+  });
+
   if (!page) {
     return NextResponse.json({ message: "Page not found" }, { status: 404 });
   }
