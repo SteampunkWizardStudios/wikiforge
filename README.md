@@ -7,7 +7,7 @@ WikiForge is wiki-software intended to be a MediaWiki alternative. WikiForge aim
 - Page classes (to be added)
   - Enforce consistent page layout and content.
 - Components (to be added)
-  - Powerful templates that render as HTML, allowing granular control over the style and layout of your pages.
+  - Powerful functions that render as HTML, allowing granular control over the style and layout of your pages.
 
 ## Tech stack
 - Docker
