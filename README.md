@@ -13,6 +13,7 @@ WikiForge is wiki-software intended to be a MediaWiki alternative. WikiForge aim
 - Editing and revision history (current focus)
 - Categories
 - Full-wiki search
+- ForgeText parser
 - Components
 - Data source
 - Page classes
