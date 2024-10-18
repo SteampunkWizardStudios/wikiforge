@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { Page } from "@prisma/client";
 import { pages } from "next/dist/build/templates/app-page";
+import { join } from "path";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -13,7 +14,7 @@ export async function GET(req: NextRequest) {
   }
 
   const page: Page | null = await prisma.page.findUnique({
-    where: { title: slug }
+    where: { title: slug },
   });
 
   if (!page) {
@@ -32,8 +33,8 @@ export async function POST(req: NextRequest) {
       revisions: {
         create: {
           rawContent: content,
-        }
-      }
+        },
+      },
     },
   });
   return NextResponse.json(newPage, { status: 201 });
@@ -49,8 +50,20 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ message: "Slug is required" }, { status: 400 });
   }
 
-  await prisma.revision.deleteMany({ where: { Page: {title: slug}} });
+  await prisma.revision.deleteMany({
+    where: {
+      Page: {
+        title: slug,
+      },
+    },
+  });
 
-  await prisma.page.delete({ where: { title: slug } });
-  return NextResponse.json({ message: "Page deleted" }, { status: 200 });
+  await prisma.page.delete({
+    where: { title: slug },
+  });
+
+  return NextResponse.json(
+    { message: `${slug} page deleted` },
+    { status: 200 }
+  );
 }
