@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { Page } from "@prisma/client";
+import { pages } from "next/dist/build/templates/app-page";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -8,7 +9,6 @@ export async function GET(req: NextRequest) {
 
   if (!slug) {
     const pages: Page[] = await prisma.page.findMany();
-    console.log(pages);
     return NextResponse.json(pages, { status: 200 });
   }
 
@@ -20,17 +20,20 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ message: "Page not found" }, { status: 404 });
   }
 
-  console.log(page);
   return NextResponse.json(page, { status: 200 });
 }
 
 export async function POST(req: NextRequest) {
   const { title, content } = await req.json();
 
-  const newPage = await prisma.page.create({
+  const newPage: Page = await prisma.page.create({
     data: {
-      title,
-      content,
+      title: title,
+      revisions: {
+        create: {
+          rawContent: content,
+        }
+      }
     },
   });
   return NextResponse.json(newPage, { status: 201 });
@@ -40,9 +43,13 @@ export async function DELETE(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const slug = searchParams.get("slug");
 
+  console.log(searchParams);
+
   if (!slug) {
     return NextResponse.json({ message: "Slug is required" }, { status: 400 });
   }
+
+  await prisma.revision.deleteMany({ where: { Page: {title: slug}} });
 
   await prisma.page.delete({ where: { title: slug } });
   return NextResponse.json({ message: "Page deleted" }, { status: 200 });

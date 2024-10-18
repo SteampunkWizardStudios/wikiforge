@@ -6,8 +6,8 @@ import Link from "next/link";
 
 const ManagePages: React.FC = () => {
   const [pages, setPages] = useState<Page[]>([]);
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
   useEffect(() => {
     fetchPages();
@@ -30,8 +30,8 @@ const ManagePages: React.FC = () => {
     });
     if (res.ok) {
       fetchPages();
-      setTitle('');
-      setContent('');
+      setTitle("");
+      setContent("");
     }
   };
 
