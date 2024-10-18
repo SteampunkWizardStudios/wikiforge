@@ -44,8 +44,6 @@ export async function DELETE(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const slug = searchParams.get("slug");
 
-  console.log(searchParams);
-
   if (!slug) {
     return NextResponse.json({ message: "Slug is required" }, { status: 400 });
   }
