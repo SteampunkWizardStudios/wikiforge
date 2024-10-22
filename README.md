@@ -17,7 +17,7 @@ WikiForge is wiki-software intended to be a MediaWiki alternative. WikiForge aim
 - Categories
 - ForgeText parser
 - Components
-- Full-wiki search
+- Full-wiki search (start with postgres and then switch to elasticsearch or similar)
 - Data source
 - Page classes
 - Users and authentication
