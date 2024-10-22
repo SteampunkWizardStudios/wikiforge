@@ -9,6 +9,8 @@ WikiForge is wiki-software intended to be a MediaWiki alternative. WikiForge aim
 - Components (to be added)
   - Powerful functions that render as HTML, allowing granular control over the style and layout of your pages.
 
+# Roadmap
+
 ## 0.1.0-alpha (Minimum viable product)
 - Page creation and management ✅
 - Editing and revision history (current focus)
