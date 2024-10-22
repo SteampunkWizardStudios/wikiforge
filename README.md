@@ -36,3 +36,4 @@ WikiForge is wiki-software intended to be a MediaWiki alternative. WikiForge aim
 - Tailwind CSS
 - PostgreSQL
 - Prisma
+- Apollo (need to switch from REST-first to GraphQL-first focus)
