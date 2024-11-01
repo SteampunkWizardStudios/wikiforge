@@ -37,4 +37,4 @@ WikiForge is wiki-software intended to be a MediaWiki alternative. WikiForge aim
 - PostgreSQL
 - Prisma
 - GraphQL
-- Pothos with Prisma plugin
+- TypeGraphQL Prisma
