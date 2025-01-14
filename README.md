@@ -34,9 +34,11 @@ WikiForge is wiki-software intended to be a MediaWiki alternative. WikiForge aim
 - Typescript
 - Next.js
 - Tailwind CSS
+- Undecided on component styling solution, might use shadcn
 - PostgreSQL
 - Prisma
 - GraphQL
 - TypeGraphQL Prisma
 - Apollo Server
 - Apollo Server Next.js Integration
+- NextAuth.js
