@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { ApolloProvider } from "@apollo/client";
+import apolloClient from "@/lib/apolloClient";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,7 +23,7 @@ export const metadata: Metadata = {
     title: "WikiForge",
     description: "Create fast, modern and data-driven wikis with WikiForge.",
     siteName: "WikiForge",
-  }
+  },
 };
 
 export default function RootLayout({
@@ -34,7 +36,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ApolloProvider client={apolloClient}>{children}</ApolloProvider>
       </body>
     </html>
   );

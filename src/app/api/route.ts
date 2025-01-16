@@ -1,3 +1,3 @@
 import "reflect-metadata";
-import handler from "../../lib/apollo";
-export { handler as GET, handler as POST };
+import apolloServer from "@/lib/apolloServer";
+export { apolloServer as GET, apolloServer as POST };

@@ -2,7 +2,7 @@ import { ApolloServer } from "@apollo/server";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
 import prisma from "./prisma";
 import { buildSchema } from "type-graphql";
-import { resolvers } from "../../prisma/generated/type-graphql";
+import { resolvers } from "@prisma/generated/type-graphql"; 
 import { NextRequest } from "next/server";
 
 const schema = await buildSchema({
@@ -14,8 +14,8 @@ const server = new ApolloServer({
   schema,
 });
 
-const handler = startServerAndCreateNextHandler<NextRequest>(server, {
+const apolloServer = startServerAndCreateNextHandler<NextRequest>(server, {
   context: async () => ({ prisma }),
 });
 
-export default handler;
+export default apolloServer;
