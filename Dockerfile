@@ -1,5 +1,7 @@
 # Use the official Node.js image as the base image
-FROM node:18-alpine
+FROM node:23-alpine3.20
+
+RUN apk add openssl
 
 # Set the working directory
 WORKDIR /wikiforge
@@ -18,4 +20,4 @@ COPY . .
 EXPOSE 3000
 
 # Run Prisma generate, migrate and start the Next.js application
-CMD ["sh", "-c", "npx prisma generate && npx prisma migrate deploy && npm run dev"]
+CMD ["sh", "-c", "npx prisma generate --no-hints && npx prisma migrate deploy && npm run dev"]
