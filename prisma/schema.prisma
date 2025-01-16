@@ -34,7 +34,7 @@ model Page {
 
 model Revision {
     id          Int      @id @default(autoincrement())
-    Page        Page     @relation(fields: [pageId], references: [id])
+    Page        Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
     pageId      Int
     rawContent  String // forgeText, used for editors
     htmlContent String? // prerendered, used for viewers (may be cached elsewhere in the future)
