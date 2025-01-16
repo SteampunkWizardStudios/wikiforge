@@ -4,8 +4,8 @@ import { gql, useMutation } from '@apollo/client';
 import React, { useState } from 'react';
 
 const CREATE_PAGE_MUTATION = gql`
-  mutation CreatePage($title: String!, $content: String!) {
-    createPage(data: { title: $title, content: $content }) {
+  mutation CreateOnePage($title: String!, $content: String!) {
+    createOnePage(data: { title: $title, content: $content }) {
       id
       title
       content
@@ -16,23 +16,27 @@ const CREATE_PAGE_MUTATION = gql`
 const Page = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [createPage] = useMutation(CREATE_PAGE_MUTATION);
+  const [createPage, { error }] = useMutation(CREATE_PAGE_MUTATION);
 
   const fetchPages = () => {
-    // Define or import your fetchPages function here
+    // Your logic to fetch pages
   };
 
   const handleCreatePage = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
+      console.log('Creating page with:', { title, content });
       const { data } = await createPage({ variables: { title, content } });
       if (data) {
         fetchPages();
         setTitle("");
         setContent("");
       }
-    } catch (error) {
-      console.error('Error creating page:', error);
+    } catch (err) {
+      console.error('Error creating page:', err);
+      if (err instanceof Error) {
+        console.error('Network error details:', err.message);
+      }
     }
   };
 
@@ -58,6 +62,7 @@ const Page = () => {
         />
       </div>
       <button type="submit">Create Page</button>
+      {error && <p className="text-red-500">Error: {error.message}</p>}
     </form>
   );
 };

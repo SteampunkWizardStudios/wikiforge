@@ -12,6 +12,10 @@ const schema = await buildSchema({
 
 const server = new ApolloServer({
   schema,
+  formatError: (error) => {
+    console.error("Apollo Server:", error);
+    return error;
+  }
 });
 
 const apolloServer = startServerAndCreateNextHandler<NextRequest>(server, {
