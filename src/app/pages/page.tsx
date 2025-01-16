@@ -1,3 +1,5 @@
+"use client"
+
 import { gql, useMutation } from '@apollo/client';
 import React, { useState } from 'react';
 
@@ -20,8 +22,8 @@ const Page = () => {
     // Define or import your fetchPages function here
   };
 
-  const handleCreate = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleCreatePage = async (event: React.FormEvent) => {
+    event.preventDefault();
     try {
       const { data } = await createPage({ variables: { title, content } });
       if (data) {
@@ -30,12 +32,12 @@ const Page = () => {
         setContent("");
       }
     } catch (error) {
-      console.error(error);
+      console.error('Error creating page:', error);
     }
   };
 
   return (
-    <form onSubmit={handleCreate}>
+    <form onSubmit={handleCreatePage}>
       <div className="mb-2">
         <input
           type="text"
